@@ -3,6 +3,7 @@ const { User } = require('../../models');
 
 
 //sign up button - post route to take user input (req.body) and create a user (sign up)
+// /api/user/signup
 router.post('/signup', async (req, res) => {
     try {
         // create the new user
@@ -21,6 +22,7 @@ router.post('/signup', async (req, res) => {
 })
 
 //log in button - post route to take user input (req.body) and verify password (use instance method) and login (log in)
+// /api/user/login
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({
@@ -51,6 +53,7 @@ router.post('/login', async (req, res) => {
 })
 
 //log out button - post route to take the session obj created for the user when they logged in (req.session) and destroy it (log out)
+// /api/user/logout
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
       req.session.destroy(() => {

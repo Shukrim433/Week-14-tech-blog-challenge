@@ -3,6 +3,7 @@ const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // new post button (post route to create a new post)
+// /api/post/
 router.post('/', withAuth, async (req, res) => {
     try {
         const postData = await Post.create({
@@ -17,6 +18,7 @@ router.post('/', withAuth, async (req, res) => {
 })
 
 // update post button (put route to update an existing post)
+// /api/post/:id
 router.put('/:id', withAuth, async (req, res) => {
     try {
         const postData =  await Post.update(
@@ -41,6 +43,7 @@ router.put('/:id', withAuth, async (req, res) => {
 
 
 // delete post button (delete route to delete an existing post)
+// /api/post/:id
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.destroy({
