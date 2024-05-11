@@ -1,0 +1,14 @@
+[
+    {
+        "title": "For loops",
+        "body": ""
+    },
+    {
+        "title": "Spread Operators",
+        "body": "In simple terms, the spread operator, usually represented by three dots (...) in JavaScript, allows you to expand an iterable object like an array or an object into individual elements. It's like taking the contents of the object and spreading them out.        For example, if you have an array [1, 2, 3] and you use the spread operator like this: [...array], it would expand into individual elements: 1, 2, 3. This can be helpful when you want to combine arrays, pass multiple arguments to a function, or create copies of arrays or objects without modifying the original."
+    },
+    {
+        "title": "JSON.stringify",
+        "body": "JSON.stringify is a function in JavaScript that converts JavaScript objects into strings in a format called JSON (JavaScript Object Notation). JSON is a lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. So, when you use JSON.stringify, you're basically taking a JavaScript object and turning it into a string that can be sent over the internet, saved to a file, or used in any other way that requires a string representation of the object."
+    }
+]
