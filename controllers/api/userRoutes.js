@@ -29,12 +29,14 @@ router.post('/login', async (req, res) => {
 
         if(!userData) {
             res.status(400).json({message: 'incorrect username or passowrd'})
+            return
         }
 
         // uses the instance method in the User model to check if the user entered the correct password
         const validPassword = await checkPassword(req.body.password)
         if(!validPassword) {
             res.status(400).json({message: 'incorrect username or passowrd'})
+            return
         }
 
         req.session.save(()=> {
@@ -58,3 +60,6 @@ router.post('/logout', (req, res) => {
       res.status(404).end()           // 404 = "Not Found." If the user is not logged in, the server responds with 404 meaning the requested resource (the session) could not be found 
     }
   })
+
+  
+module.exports = router;
