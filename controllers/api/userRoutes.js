@@ -5,17 +5,20 @@ const { User } = require('../../models');
 //sign up button - post route to take user input (req.body) and create a user (sign up)
 // /api/user/signup
 router.post('/signup', async (req, res) => {
+    console.log(req.body)
     try {
         // create the new user
-        const newUserData = await User.create(req.body)
+        const userData = await User.create(req.body)
 
         //create the new session object (for this session)
         req.session.save(() => {
-            req.session.logged_in = true,
-            req.session.userId = newUserData.id
+            req.session.userId = userData.id,
+            req.session.logged_in = true 
+
+            res.status(200).json(userData)
         })
 
-        res.status(200).json(newUserData)
+        
     } catch(err){
         res.status(400).json(err) // 400 = bad request from the user, ie if theyre signing up and they enter a password < 8 characters
     }
@@ -24,6 +27,7 @@ router.post('/signup', async (req, res) => {
 //log in button - post route to take user input (req.body) and verify password (use instance method) and login (log in)
 // /api/user/login
 router.post('/login', async (req, res) => {
+    console.log(req.body)
     try {
         const userData = await User.findOne({
             where: {userName: req.body.userName}
@@ -35,18 +39,19 @@ router.post('/login', async (req, res) => {
         }
 
         // uses the instance method in the User model to check if the user entered the correct password
-        const validPassword = await checkPassword(req.body.password)
+        const validPassword = await userData.checkPassword(req.body.password)
         if(!validPassword) {
             res.status(400).json({message: 'incorrect username or passowrd'})
             return
         }
 
         req.session.save(()=> {
-            req.session.logged_in = true,
-            req.session.userId = userData.id
+            req.session.userId = userData.id,
+            req.session.logged_in = true
+
+            res.json({user: userData, message: 'you are now logged in!'})
         })
 
-        res.status(200).json(userData)
     } catch(err){
         res.status(400).json(err)
     }

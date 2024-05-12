@@ -10,11 +10,11 @@ router.get('/', async (req, res) => {
         })
         const posts = postData.map((post) => post.get({plain:true}))
 
-        /*res.render('homepage', {
+        res.render('homepage', {
             posts,  //array of objects
             logged_in: req.session.logged_in
-        })*/
-        res.status(200).json(posts)
+        })
+        //res.status(200).json(posts)
     } catch(err) {
         res.status(500).json(err)
     }
@@ -31,11 +31,11 @@ router.get('/post/:id', async (req, res) => {
         })
         const post = postData.get({ plain: true });
         
-        /*res.render('post', {
+        res.render('post', {
             post,  //single object
             logged_in: req.session.logged_in
-        })*/
-        res.status(200).json(post)
+        })
+        //res.status(200).json(post)
     } catch(err) {
         res.status(500).json
     }
@@ -45,15 +45,16 @@ router.get('/post/:id', async (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
     try{
         const userData = await User.findByPk(req.session.userId, {
+            attributes: { exclude: ['password'] },
             include: {model: Post}
         })
-        const user = userData.map((user) => user.get({plain:true}))
+        const user = userData.get({ plain: true });
 
-        /*res.render('profile', {
-            user,  //array of objects
+        res.render('profile', {
+            user,  // single object
             logged_in: true
-        })*/
-        res.status(200).json(user)
+        })
+        //res.status(200).json(user)
     } catch(err){
         res.status(500).json(err)
     }
