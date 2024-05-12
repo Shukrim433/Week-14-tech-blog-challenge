@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
 
 // individual post page (get route to display the role thats clicked on + associated users + associated comments)
 router.get('/post/:id', async (req, res) => {
+    console.log(req.params)
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
@@ -37,6 +38,26 @@ router.get('/post/:id', async (req, res) => {
         })
         //res.status(200).json(post)
     } catch(err) {
+        console.log(err)
+        res.status(500).json
+    }
+})
+
+// profile page update form (get route to populate the update form with the selected roles information)
+router.get('/update-post-form/:id', async (req, res) => {
+    console.log(req.params)
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                {model: User},
+                {model: Comment}
+            ]
+        })
+        const post = postData.get({ plain: true });
+        
+        res.status(200).json(post)
+    } catch(err) {
+        console.log(err)
         res.status(500).json
     }
 })

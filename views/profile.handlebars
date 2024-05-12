@@ -4,13 +4,14 @@
   </div>
 </div>
 
-<p> <button class="btn btn-primary"> + New Post </button> </p> <!--javascript- click, shows create new post form-->
+<p> <button class="btn btn-primary" id="newPostBtn"> + New Post </button> </p> <!--javascript- click, shows create new post form-->
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <h3> Create New Post:</h3>
 
-    <form class="form new-project-form">
+    <!--form for creating a new project-->
+    <form class="form new-project-form" id="createPostForm" style="display: none">
+      <h3> Create New Post:</h3>
       <div class="form-group">
         <label for="post-title"> Title:</label>
         <input class="form-input" type="text" id="post-title" name="post-title" />
@@ -21,30 +22,47 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">Create </button> <!--in javascript once the user presses create, post request, hide and refresh-->
+        <button class="btn btn-primary" type="submit">Create </button> <!--in javascript once the user presses create, post request, hide form and refresh-->
       </div> 
-      
-      </div>
+    </div>
     </form>
+
+    <!--form for updating an existing project-->
+      <form class="form new-project-form" id="updatePostForm" style="display: none">
+      <h3> Update Post:</h3>
+      <div class="form-group">
+        <label for="post-title-update"> Title:</label>
+        <input class="form-input" type="text" id="post-title-update" name="post-title-update" />
+      </div>
+      <div class="form-group">
+        <label for="post-body-update"> Content:</label>
+        <input class="form-input" type="text" id="post-body-update" name="post-body-update" />
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Update </button> <!--in javascript once the user presses create, post request, hide form and refresh-->
+      </div> 
+    </div>
+    </form>
+
+
   </div>
 
   {{#if user.posts.length}}
-  <div class="col-md-6 project-list">
+  <div class="col-md-6 project-list yourPosts">
     <h3>Your Posts:</h3>
 
-    {{#each posts as |post|}}
+    {{#each user.posts as |post|}}
     <div class="row mb-2">
 
       <div class="col-md-8">
         <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
       </div>
 
-      <div class="col-md-4">
-        <button class="btn btn-primary" data-id="{{project.id}}">DELETE</button>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary" data-id="{{project.id}}">UPDATE</button>
-      </div>
+        <button class="btn btn-primary deleteBtn" data-id="{{post.id}}">DELETE</button> <!--javascript - click, delete post using data id (28 mini), refresh-->
+
+        <button class="btn btn-primary updateBtn"  data-role-id="{{post.id}}">UPDATE</button> <!--javascript - click, show updating form for that post using data-id-->
+  
 
     </div>
     {{/each}}

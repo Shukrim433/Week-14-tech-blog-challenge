@@ -18,12 +18,12 @@ router.post('/', withAuth, async (req, res) => {
 })
 
 // update post button (put route to update an existing post)
-// /api/post/:id
-router.put('/:id', withAuth, async (req, res) => {
+// /api/post/update/:id
+router.put('/update/:id', withAuth, async (req, res) => {
+    console.log('hit update route')
     try {
         const postData =  await Post.update(
-            {title: req.body.title},
-            {body: req.body.body}, 
+            {title: req.body.title, body: req.body.body}, 
             {where: {
                 id: req.params.id,
                 user_id: req.session.userId
@@ -37,14 +37,15 @@ router.put('/:id', withAuth, async (req, res) => {
 
         res.status(200).json(postData)
     } catch(err){
+        console.log(err)
         res.status(500).json(err)
     }
 })
 
 
 // delete post button (delete route to delete an existing post)
-// /api/post/:id
-router.delete('/:id', withAuth, async (req, res) => {
+// /api/post/delete/:id
+router.delete('/delete/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.destroy({
             where: {
