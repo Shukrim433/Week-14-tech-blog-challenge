@@ -4,10 +4,10 @@
   <p>Created by {{post.user.userName}} on {{format_date post.date_created}}</p>
 </div>
 
-<div class="text-center" id="comment-div"> <!--in javascript once the user presses submit, post request, hide this div and refresh-->
+<div class="text-center" id="comment-div"> <!--in javascript once the user presses submit, post request and refresh-->
     <label for="comment"> Comment:</label>
     <input class="form-input" type="text" id="comment" placeholder="enter a comment" />
-    <p> <button class="btn btn-primary" data-id="{{post.id}}"> Submit </button> </p> <!--post_id here-->
+    <p> <button class="btn btn-primary sendCommentBtn" data-id="{{post.id}}"> Submit </button> </p> <!--post_id here-->
 </div>
 
 
