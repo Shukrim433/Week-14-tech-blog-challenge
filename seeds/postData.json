@@ -1,7 +1,7 @@
 [
     {
         "title": "For loops",
-        "body": ""
+        "body": "For loops in JavaScript are control structures that iterate over a block of code multiple times, based on specified conditions such as initialization, condition, and incrementation/decrementation."
     },
     {
         "title": "Spread Operators",
