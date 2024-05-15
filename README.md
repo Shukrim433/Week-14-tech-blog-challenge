@@ -34,11 +34,12 @@
 ## Challenges:
 - For a while when i tried to login/signup (even though the routes were working) the login/signup buttons would just redirect me to the login page.
 - I realized it was because in my user login/signup routes when creating my session objects i didnt include the response ( res.status(200).json(userData)) in the session objects, they were outside of them. which is why the withauth middleware would prevent me from accessing the profile page when i tried to login/signup.
+- also forgot to inclue 'node seeds/seeds.js' in render deployment instructions so i had to manually recreated the seed data in the website, by creating accounts, post and comments
 
 ## Application
 
 - deployed application link:
-https://week-14-tech-blog-challenge.onrender.com/post/3
+https://week-14-tech-blog-challenge.onrender.com/
 
 - screenshot of deployed application:
 ![alt text](image.png)
