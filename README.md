@@ -39,7 +39,7 @@
 ## Application
 
 - deployed application link:
-https://week-14-tech-blog-challenge.onrender.com/
+https://tech-blog-3-2ffa.onrender.com/ 
 
 - screenshot of deployed application:
 ![alt text](image.png)
