@@ -39,7 +39,7 @@
 ## Application
 
 - deployed application link:
-https://tech-blog-13.onrender.com/ 
+https://techblog14.onrender.com
 
 - screenshot of deployed application:
 ![alt text](image.png)
